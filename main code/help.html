@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flovers Fusion - Help Center</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&family=Lobster&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Rubik', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #e0f7fa, #f0f4c3);
+            min-height: 100vh;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Navbar Styles (Matching Main Site) */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 15px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            font-family: "Lobster", serif;
+            font-size: 28px;
+            color: #397a40;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #397a40;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #2a5b2e;
+        }
+
+        /* Help Center Styles */
+        .help-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .help-header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #397a40;
+            padding-bottom: 15px;
+        }
+
+        .help-header h1 {
+            color: #397a40;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .help-header p {
+            color: #666;
+        }
+
+        /* Accordion Styles */
+        .accordion-item {
+            background-color: rgba(255, 255, 255, 0.8);
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+
+        .accordion-button {
+            background-color: #f9f9f9;
+            color: #397a40;
+            font-weight: 600;
+            border: none;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            text-align: left;
+        }
+
+        .accordion-button:not(.collapsed) {
+            background-color: #397a40;
+            color: white;
+        }
+
+        .accordion-body {
+            padding: 20px;
+            background-color: white;
+        }
+
+        .help-item {
+            background-color: #f6f6f6;
+            border-left: 4px solid #397a40;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+        }
+
+        .help-item h6 {
+            color: #397a40;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .contact-section {
+            background-color: rgba(57, 122, 64, 0.1);
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .contact-btn {
+            display: inline-block;
+            background-color: #397a40;
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+
+        .contact-btn:hover {
+            background-color: #2a5b2e;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .nav-links {
+                margin-top: 10px;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .help-container {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Navbar -->
+        <nav class="navbar">
+            <a href="#" class="logo">Flaver Fusion 🌿</a>
+        </nav>
+
+        <div class="help-container">
+            <div class="help-header">
+                <h1>Help Center</h1>
+                <p>Get quick answers to your most common questions</p>
+            </div>
+
+            <div class="accordion">
+                <!-- Ordering Information -->
+                <div class="accordion-item">
+                    <div class="accordion-button" data-toggle="collapse" data-target="#orderQuestions">
+                        🍽️ Ordering Information
+                    </div>
+                    <div id="orderQuestions" class="accordion-body">
+                        <div class="help-item">
+                            <h6>How to Place an Order</h6>
+                            <p>Browse our menu, select your favorite items, and click 'Add to Cart'. Review your order, proceed to checkout, and complete the payment.</p>
+                        </div>
+                        <div class="help-item">
+                            <h6>Delivery Time</h6>
+                            <p>Our standard delivery takes 30-45 minutes. During peak hours, delivery might take up to an hour. We'll keep you updated on your order status.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Payment Methods -->
+                <div class="accordion-item">
+                    <div class="accordion-button collapsed" data-toggle="collapse" data-target="#paymentQuestions">
+                        💳 Payment Methods
+                    </div>
+                    <div id="paymentQuestions" class="accordion-body">
+                        <div class="help-item">
+                            <h6>Accepted Payment Options</h6>
+                            <p>We accept all major Credit/Debit Cards, UPI, Net Banking, Digital Wallets, and Cash on Delivery.</p>
+                        </div>
+                        <div class="help-item">
+                            <h6>Refund Policy</h6>
+                            <p>Refunds for eligible cancellations or returns are processed within 3-5 business days. The refund will be credited to your original payment method.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Account Management -->
+                <div class="accordion-item">
+                    <div class="accordion-button collapsed" data-toggle="collapse" data-target="#accountQuestions">
+                        👤 Account Management
+                    </div>
+                    <div id="accountQuestions" class="accordion-body">
+                        <div class="help-item">
+                            <h6>Creating an Account</h6>
+                            <p>Click 'Sign Up', enter your details, and verify your email. It takes less than a minute to get started!</p>
+                        </div>
+                        <div class="help-item">
+                            <h6>Password Reset</h6>
+                            <p>Click 'Forgot Password' on the login page. We'll send a reset link to your registered email address.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-section">
+                <h5>Need More Help?</h5>
+                <p>Our support team is ready to assist you with any questions.</p>
+                <a href="#" class="contact-btn">Contact Support</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simple accordion functionality without Bootstrap
+        document.querySelectorAll('.accordion-button').forEach(button => {
+            button.addEventListener('click', () => {
+                const targetId = button.dataset.target;
+                const targetElement = document.querySelector(targetId);
+                
+                // Toggle active state
+                button.classList.toggle('collapsed');
+                
+                // Toggle visibility of accordion body
+                if (targetElement.style.display === 'block') {
+                    targetElement.style.display = 'none';
+                } else {
+                    targetElement.style.display = 'block';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

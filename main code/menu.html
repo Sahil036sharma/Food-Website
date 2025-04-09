@@ -4,142 +4,943 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu page</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Lobster&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+    <title>Flaver Fusion - Order & Menu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&family=Lobster&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
     <style>
-        body {
-            margin: 0%;
-            padding: 0%;
-            background-color: bisque;
+        * {
+            margin: 0;
+            padding: 0;
             box-sizing: border-box;
+            font-family: 'Rubik', sans-serif;
         }
 
-        .navbar-brand {
-            font-size: 2rem;
-            color: black;
+        body {
+            background: linear-gradient(135deg, #e0f7fa, #f0f4c3);
+            min-height: 100vh;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Navigation Styles */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 15px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .logo {
             font-family: "Lobster", serif;
+            font-size: 28px;
+            color: #397a40;
+            text-decoration: none;
         }
 
-        .navbar-brand:hover {
-            color: black;
+        .nav-links {
+            display: flex;
+            gap: 20px;
         }
 
-        .nav-link {
-            font-size: 1rem;
-            margin-right: 10px;
-            margin-left: 10px;
-            color: black;
-            text-transform: uppercase;
-            font-weight: bold;
-            font-family: "Rubik", serif;
+        .nav-links a {
+            text-decoration: none;
+            color: #397a40;
+            font-weight: 500;
+            transition: color 0.3s ease;
         }
 
-        .nav-link :hover {
-            color: black;
+        .nav-links a:hover {
+            color: #2a5b2e;
         }
 
-        .search {
-            height: 40px;
-            width: 80%;
-            border-radius: 60px;
-            outline: none;
-            margin-right: -40px;
-            border: 2px solid black;
-            font-family: "Rubik", serif;
-        }
-
-        .btn0 {
-            height: 40px;
-            width: 40%;
-            outline: none;
-            border: none;
-            background-color: rgb(20, 100, 44);
+        /* Discount Card */
+        .discount-card {
+            background: linear-gradient(135deg, #ff6b6b, #feca57);
             color: white;
-            font-weight: bolder;
-            border-radius: 60px;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
         }
 
-        .btn0:hover {
-            background-color: gold;
+        /* Menu Section */
+        .menu-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
         }
-        .main h1{
-            font-size: 3rem;
-            color: black;
-            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+
+        .menu-category {
+            margin-bottom: 30px;
         }
-        .main p{
-            font-size: 1.1rem;
-            color: black;
-            font-family: Arial, Helvetica, sans-serif;
+
+        .menu-category h2 {
+            color: #397a40;
+            border-bottom: 2px solid #397a40;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .menu-item {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .menu-item img {
+            max-width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        /* Cart and Checkout Styles */
+        .cart-section {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 30px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .checkout-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: #397a40;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .checkout-btn:hover {
+            background-color: #2a5b2e;
+        }
+
+        /* Bill Print Modal */
+        .bill-print-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1100;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .bill-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .bill-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .bill-items {
+            margin-bottom: 20px;
+        }
+
+        .bill-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .bill-summary {
+            text-align: right;
+            font-weight: bold;
+        }
+
+        .bill-discount {
+            color: green;
+            margin-top: 10px;
+        }
+
+        .print-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #397a40;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        /* Payment Modal */
+        .payment-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .payment-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        .payment-methods {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .payment-method {
+            padding: 15px;
+            border: 2px solid #397a40;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .payment-method:hover {
+            background-color: #397a40;
+            color: white;
+        }
+
+        .payment-method.selected {
+            background-color: #397a40;
+            color: white;
+        }
+
+        /* Additional Responsive Styles */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .nav-links {
+                margin-top: 10px;
+            }
+        }
+
+
+        .qr-payment-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1200;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .qr-payment-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        #qr-code-img {
+            max-width: 250px;
+            margin: 20px auto;
+        }
+
+        .payment-status {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+
+        .add-to-cart {
+            background-color: #397a40;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-weight: 500;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        .add-to-cart:hover {
+            background-color: #2a5b2e;
+        }
+
+        .add-to-cart:active {
+            background-color: #1e422e;
         }
     </style>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg ">
-        <div class="container">
-           
-            <h1 class="navbar-brand" href="#">Flover Fusion</h1>
+    <div class="container">
+        <!-- Navbar -->
+        <nav class="navbar">
+            <a href="#" class="logo">Flavor Fusion 🌿</a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+                <a href="login.html">Logout</a>
+            </div>
+        </nav>
 
-
-            <form class="d-flex">
-                <input class=" px-3 search" type="search" placeholder=" Search">
-                <button class="btn0" type="submit">Search</button>
-            </form>
+        <!-- Discount Card -->
+        <div class="discount-card">
+            <h3>🎉 Special Offer! 🎉</h3>
+            <p>Get 20% off on orders above ₹500 | Use Code: FLAVOR20</p>
+            <p>Free delivery on orders above ₹750</p>
         </div>
-        </div>
-    </nav>
 
-    <section class="main py-5">
-        <div class="row py-5">
-            <div class="col-lg-12">
-                <h1 class="text-center m-auto">Welcome to Flower Fusion</h1>
-                <p class="text-center m-auto pt-5 ">Please select your food items from the menu below. We offer a delightful range of dishes that are sure to satisfy your cravings. Enjoy your meal!</p>
+        <!-- Menu Sections -->
+        <section id="menu-content">
+            <div class="menu-category">
+                <h2>🥗 Healthy Vegan Dishes</h2>
+                <section class="menu-section" id="vegan-menu-items"></section>
             </div>
 
-            <div class="row">
-                <div class="col-lg-6">
-                    
+            <div class="menu-category">
+                <h2>🍲 Indian Cuisine</h2>
+                <section class="menu-section" id="indian-menu-items"></section>
+            </div>
+
+            <div class="menu-category">
+                <h2>🧊 Cold Drinks & Beverages</h2>
+                <section class="menu-section" id="drink-menu-items"></section>
+            </div>
+        </section>
+
+        <!-- Cart Section -->
+        <section class="cart-section">
+            <h2>Your Cart</h2>
+            <div id="cart-items" class="cart-items"></div>
+            <div id="total-price" class="total-price">Total: ₹0.00</div>
+            <button id="checkout-btn" class="checkout-btn">Proceed to Checkout</button>
+        </section>
+
+        <!-- Bill Print Modal -->
+        <div id="bill-print-modal" class="bill-print-modal">
+            <div class="bill-content">
+                <div class="bill-header">
+                    <h2>Flaver Fusion 🌿</h2>
+                    <p>Order Bill</p>
+                    <p id="bill-date"></p>
                 </div>
+                <div id="bill-items" class="bill-items"></div>
+                <div class="bill-summary">
+                    <div id="bill-subtotal"></div>
+                    <div id="bill-discount" class="bill-discount"></div>
+                    <div id="bill-total"></div>
+                </div>
+                <button id="print-bill-btn" class="print-btn">Print Bill</button>
             </div>
         </div>
-    </section>
 
+        <!-- Payment Modal -->
+        <div id="payment-modal" class="payment-modal">
+            <div class="payment-content">
+                <h2>Payment Details</h2>
+                <div id="order-summary"></div>
+                <h3>Select Payment Method</h3>
+                <div class="payment-methods">
+                    <div class="payment-method" data-method="upi">UPI</div>
+                    <div class="payment-method" data-method="card">Credit/Debit Card</div>
+                    <div class="payment-method" data-method="cash">Cash</div>
+                </div>
+                <button id="confirm-payment-btn" class="checkout-btn" style="margin-top: 20px;">Confirm Payment</button>
+            </div>
+        </div>
+    </div>
 
+    <div id="qr-payment-modal" class="qr-payment-modal">
+        <div class="qr-payment-content">
+            <h2>UPI Payment</h2>
+            <div id="qr-code-container">
+                <img id="qr-code-img" alt="UPI Payment QR Code">
+            </div>
+            <div id="payment-amount-display" class="payment-status"></div>
+            <div id="qr-payment-status" class="payment-status"></div>
+            <button id="simulate-scan-btn" class="checkout-btn">Simulate QR Scan</button>
+        </div>
+    </div>
 
+    <script>
+        // Menu Data
+        const menuCategories = {
+            veganMenu: [
+                {
+                    id: 1,
+                    name: "Green Goddess Salad",
+                    price: 349,
+                    image: "https://www.wholesomeyum.com/wp-content/uploads/2021/12/wholesomeyum-Green-Goddess-Salad-Recipe-18.jpg",
+                    description: "Fresh organic greens with house-made dressing"
+                },
+                {
+                    id: 2,
+                    name: "Vegan Buddha Bowl",
+                    price: 389,
+                    image: "https://elavegan.com/wp-content/uploads/2021/05/vegan-buddha-bowl-with-chickpeas-avocado-colorful-veggies-and-green-dressing-on-the-side.jpg",
+                    description: "Nutrient-packed bowl with quinoa and roasted vegetables"
+                },
+                {
+                    id: 3,
+                    name: "Plant Protein Wrap",
+                    price: 275,
+                    image: "https://images.squarespace-cdn.com/content/v1/5328192de4b0090c6eb6f8ff/1626061482498-5QHKZSG1832MLSVVZ9RI/Low+Carb+Plant+Based+Protein+Wrap.jpg?format=2500w",
+                    description: "High-protein wrap with mixed plant-based proteins"
+                },
+                {
+                    id: 4,
+                    name: "Sayur asem",
+                    price: 300,
+                    image: "https://th.bing.com/th/id/OIP.5wKakLijcr4aAKrsU3q3_AHaFB?w=270&h=183&c=7&r=0&o=5&dpr=1.3&pid=1.7",
+                    description: "Sweet and sour vegetable soup"
+                },
+                {
+                    id: 5,
+                    name: "Singkong goreng",
+                    price: 459,
+                    image: "https://th.bing.com/th/id/OIP.zOME6HCOGqS4km0urTil2AHaEK?w=324&h=182&c=7&r=0&o=5&dpr=1.3&pid=1.7",
+                    description: "Nutrient-packed bowl with quinoa and roasted vegetables"
+                },
+                {
+                    id: 6,
+                    name: "Creamy Vegan Pasta",
+                    price: 280,
+                    image: "https://th.bing.com/th/id/OIP.yITHhbCNlggfoFGACoOlJgHaLH?pid=ImgDet&w=184&h=276&c=7&dpr=1.3",
+                    description: "Creamy vegan pasta with a tangy, dairy-free white bean, lemon, and nutritional yeast sauce!"
+                }
+                ,
+                {
+                    id: 7,
+                    name: "Vegan Tacos",
+                    price: 400,
+                    image: "https://th.bing.com/th/id/OIP.ps5zLLcFZvkFztxUwcVVBAHaLH?w=208&h=305&c=7&r=0&o=5&dpr=1.3&pid=1.7",
+                    description: "Jerk-spiced jackfruit tacos with vibrant mango avocado salsa—bold, fresh, and bursting with flavor!"
+                },
+                {
+                    id: 8,
+                    name: "Vegan Burrito",
+                    price: 650,
+                    image: "https://th.bing.com/th/id/OIP.AE2ZLRU3p_t5H_X6OeNoawAAAA?rs=1&pid=ImgDetMain",
+                    description: "Hearty vegan burrito stuffed with flavorful plant-based goodness—bold, satisfying, and deliciously wholesome!"
+                }
+            ],
+            indianMenu: [
+                {
+                    id: 10,
+                    name: "Vegetable Biryani",
+                    price: 299,
+                    image: "https://www.chefkunalkapur.com/wp-content/uploads/2021/03/veg-biryani-scaled.jpeg?v=1618288847",
+                    description: "Aromatic rice dish with mixed vegetables"
+                },
+                {
+                    id: 11,
+                    name: "Paneer Tikka Masala",
+                    price: 349,
+                    image: "https://www.whiskaffair.com/wp-content/uploads/2020/01/Paneer-Tikka-Masala-1-1.jpg",
+                    description: "Grilled cottage cheese in creamy tomato sauce"
+                },
+                {
+                    id: 12,
+                    name: "Dal Makhani",
+                    price: 249,
+                    image: "https://th.bing.com/th/id/OIP.sF4b948SFHLbg4JSDLrzPgHaHa?rs=1&pid=ImgDetMain",
+                    description: "Creamy black lentils cooked with butter and spices"
+                },
+                {
+                    id: 13,
+                    name: "Chaat",
+                    price: 159,
+                    image: "https://assets.epicurious.com/photos/60f09a34ae9cc866a51a25d0/1:1/w_2560%2Cc_limit/ChickpeaPotatoChaat_RECIPE_071321_19121.jpg",
+                    description: "Tangy, spicy, and savory street food bursting with vibrant Indian flavors!"
+                },
+                {
+                    id: 14,
+                    name: "Butter Chicken",
+                    price: 549,
+                    image: "https://www.indianhealthyrecipes.com/wp-content/uploads/2022/07/chicken-butter-masala-recipe.jpg",
+                    description: "Rich and creamy Butter Chicken—succulent pieces in a spiced tomato gravy!"
+                },
+                {
+                    id: 15,
+                    name: "Masala Dosa",
+                    price: 199,
+                    image: "https://png.pngtree.com/png-clipart/20241114/original/pngtree-masala-dosa-png-image_17056522.png",
+                    description: "Crispy Masala Dosa filled with spiced potato mash—perfectly savory and satisfying!"
+                },
+                {
+                    id: 16,
+                    name: " Shahi Paneer",
+                    price: 399,
+                    image: "https://recipes.timesofindia.com/thumb/52446409.cms?width=1200&height=900",
+                    description: "Luxurious Shahi Paneer—paneer cubes in a rich, creamy, nut-based royal gravy!"
+                },
+                {
+                    id: 17,
+                    name: "Biriyani",
+                    price: 249,
+                    image: "https://th.bing.com/th/id/OIP.fpZH5oPD42wphiwsJBaHFQHaFC?w=262&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7",
+                    description: "Aromatic Biriyani—fragrant rice layered with tender, spiced vegetables or meat, cooked to perfection!"
+                }
 
+            ],
+            drinkMenu: [
+                {
+                    id: 20,
+                    name: "Fresh Lime Soda",
+                    price: 79,
+                    image: "https://ts1.mm.bing.net/th?id=OIP.yYjvPvCXK-IQBV429eL4nQHaE8&pid=15.1",
+                    description: "Refreshing homemade lime soda"
+                },
+                {
+                    id: 21,
+                    name: "Masala Chai",
+                    price: 59,
+                    image: "https://th.bing.com/th/id/OIP.pqvSRFew0c5ZvHXaWWLuGAHaLH?w=208&h=305&c=7&r=0&o=5&dpr=1.3&pid=1.7",
+                    description: "Traditional Indian spiced tea"
+                },
+                {
+                    id: 22,
+                    name: "Mango Lassi",
+                    price: 99,
+                    image: "https://th.bing.com/th/id/OIP.xpvyVy-U8LxqpDtCLZF2qAHaLH?rs=1&pid=ImgDetMain",
+                    description: "Creamy yogurt drink with fresh mango"
+                }
+                ,
+                {
+                    id: 23,
+                    name: "Iced Green Tea",
+                    price: 69,
+                    image: "https://th.bing.com/th/id/OIP.cIOaub2CrL_StezP76YWUwHaHa?rs=1&pid=ImgDetMain",
+                    description: "Premium green tea base"
+                },
+                {
+                    id: 24,
+                    name: "Watermelon-Mint Agua Fresca",
+                    price: 159,
+                    image: "https://www.realsimple.com/thmb/LbNBrTPCXMVQGbwvjbqkNFiPz_w=/750x0/filters:no_upscale():max_bytes(150000):strip_icc()/watermelon-fresca-bd561afab084453d974cdd58a355942a.jpg",
+                    description: "Refreshing blend of watermelon and mint, perfect for any occasion."
+                },
+                {
+                    id: 25,
+                    name: "Peach Iced Tea",
+                    price: 139,
+                    image: "https://lifestyleofafoodie.com/wp-content/uploads/2021/08/Homemade-peach-iced-tea-15-of-19-1.jpg",
+                    description: "Peach Iced Tea: Sweet, fruity refreshment for every sunny moment."
+                },
+                {
+                    id: 26,
+                    name: "Tropical Creamsicle Smoothie",
+                    price: 149,
+                    image: "https://i.pinimg.com/originals/aa/ec/dc/aaecdc4a7b65e07f14d34079a7925345.jpg",
+                    description: "Tropical Creamsicle Smoothie: Creamy, fruity delight with paradise vibes included."
+                }
+                ,
+                {
+                    id: 27,
+                    name: "Creamy Date Shake",
+                    price: 159,
+                    image: "https://th.bing.com/th/id/OIP.2WrQ9TqXoFYXRIupuFM6vwAAAA?rs=1&pid=ImgDetMain",
+                    description: "Creamy Date Shake: Sweet, nourishing indulgence in every creamy sip."
+                }
+            ]
+        };
 
+        // Combine all menu items
+        const allMenuItems = [
+            ...menuCategories.veganMenu,
+            ...menuCategories.indianMenu,
+            ...menuCategories.drinkMenu
+        ];
 
+        // DOM Elements
+        const veganMenuSection = document.getElementById('vegan-menu-items');
+        const indianMenuSection = document.getElementById('indian-menu-items');
+        const drinkMenuSection = document.getElementById('drink-menu-items');
+        const cartItemsContainer = document.getElementById('cart-items');
+        const totalPriceElement = document.getElementById('total-price');
+        const checkoutBtn = document.getElementById('checkout-btn');
+        const paymentModal = document.getElementById('payment-modal');
+        const orderSummaryElement = document.getElementById('order-summary');
+        const confirmPaymentBtn = document.getElementById('confirm-payment-btn');
+        const billPrintModal = document.getElementById('bill-print-modal');
+        const printBillBtn = document.getElementById('print-bill-btn');
 
+        // Cart Management
+        let cart = [];
 
+        // Discount Calculation Function
+        function calculateDiscount(total) {
+            const discounts = [
+                { threshold: 1500, percentage: 25, code: 'FLOVERS25' },
+                { threshold: 1000, percentage: 20, code: 'FLOVERS20' },
+                { threshold: 750, percentage: 15, code: 'FLOVERS15' },
+                { threshold: 500, percentage: 10, code: 'FLOVERS10' }
+            ];
 
+            // Find the highest applicable discount
+            const applicableDiscount = discounts.find(discount => total >= discount.threshold);
 
+            if (applicableDiscount) {
+                const discountAmount = total * (applicableDiscount.percentage / 100);
+                return {
+                    percentage: applicableDiscount.percentage,
+                    amount: discountAmount,
+                    code: applicableDiscount.code
+                };
+            }
 
+            return null;
+        }
 
+        // Populate Menus
+        function populateMenus() {
+            populateMenuCategory(menuCategories.veganMenu, veganMenuSection);
+            populateMenuCategory(menuCategories.indianMenu, indianMenuSection);
+            populateMenuCategory(menuCategories.drinkMenu, drinkMenuSection);
+        }
 
+        function populateMenuCategory(categoryItems, menuSection) {
+            categoryItems.forEach((item) => {
+                const menuItem = document.createElement('div');
+                menuItem.classList.add('menu-item');
+                menuItem.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}">
+                    <h3>${item.name}</h3>
+                    <div class="price">₹${item.price.toFixed(2)}</div>
+                    <div class="description">${item.description}</div>
+                    <div class="quantity-control">
+                        <button class="quantity-btn" data-id="${item.id}" data-type="decrease">-</button>
+<input type="number" class="quantity-input" disabled data-id="${item.id}" value="1" min="1">                        <button class="quantity-btn" data-id="${item.id}" data-type="increase">+</button>
+                    </div>
+                    <button class="add-to-cart" data-id="${item.id}">Add to Cart</button>
+                `;
+                menuSection.appendChild(menuItem);
+            });
 
+            // Add event listeners
+            menuSection.querySelectorAll('.add-to-cart').forEach(button => {
+                button.addEventListener('click', addToCart);
+            });
 
+            menuSection.querySelectorAll('.quantity-btn').forEach(button => {
+                button.addEventListener('click', adjustQuantity);
+            });
+        }
 
+        function adjustQuantity(event) {
+            const itemId = event.target.dataset.id;
+            const quantityInput = document.querySelector(`.quantity-input[data-id="${itemId}"]`);
 
+            quantityInput.addEventListener('input', function () {
+                const value = parseInt(this.value);
 
+                if (value < 0) {
+                    this.value = 1;
+                    alert("No negative values allowed!");
+                }
+            });
 
+            // Additional check for when the input loses focus
+            quantityInput.addEventListener('blur', function () {
+                // If empty or not a number, set to minimum
+                if (this.value === '' || isNaN(parseInt(this.value))) {
+                    this.value = 1;
+                }
+            });
 
+            let currentQuantity = parseInt(quantityInput.value);
 
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
-        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
-        crossorigin="anonymous"></script>
+            if (event.target.dataset.type === 'increase') {
+                quantityInput.value = currentQuantity + 1;
+            } else if (event.target.dataset.type === 'decrease' && currentQuantity > 1) {
+
+                quantityInput.value = currentQuantity - 1;
+
+            }
+
+        }
+
+        function addToCart(event) {
+            const itemId = parseInt(event.target.dataset.id);
+            const quantityInput = document.querySelector(`.quantity-input[data-id="${itemId}"]`);
+            const quantity = parseInt(quantityInput.value);
+
+            const item = allMenuItems.find(menuItem => menuItem.id === itemId);
+
+            // Check if item already in cart
+            const existingCartItem = cart.find(cartItem => cartItem.id === itemId);
+
+            if (existingCartItem) {
+                existingCartItem.quantity += quantity;
+            } else {
+                cart.push({ ...item, quantity });
+            }
+
+            updateCart();
+        }
+
+        function updateCart() {
+            // Clear existing cart items
+            cartItemsContainer.innerHTML = '';
+
+            // Populate cart items
+            cart.forEach(item => {
+                const cartItemElement = document.createElement('div');
+                cartItemElement.classList.add('cart-item');
+                cartItemElement.innerHTML = `
+                    <span>${item.name}</span>
+                    <span>₹${item.price} x ${item.quantity}</span>
+                    <button onclick="removeFromCart(${item.id})">Remove</button>
+                `;
+                cartItemsContainer.appendChild(cartItemElement);
+            });
+
+            // Calculate total
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            totalPriceElement.textContent = `Total: ₹${total.toFixed(2)}`;
+        }
+
+        function removeFromCart(itemId) {
+            cart = cart.filter(item => item.id !== itemId);
+            updateCart();
+        }
+
+        // Checkout Process
+        checkoutBtn.addEventListener('click', () => {
+            if (cart.length === 0) {
+                alert('Your cart is empty!');
+                return;
+            }
+
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+            // Generate order summary
+            const orderSummary = cart.map(item =>
+                `${item.name} x ${item.quantity} = ₹${item.price * item.quantity}`
+            ).join('<br>');
+
+            orderSummaryElement.innerHTML = `
+                <h3>Order Summary</h3>
+                ${orderSummary}<br>
+                <strong>Total: ₹${total.toFixed(2)}</strong>
+            `;
+
+            // Show payment modal
+            paymentModal.style.display = 'flex';
+        });
+
+        // Print Bill Function
+        function printBill() {
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const discount = calculateDiscount(total);
+
+            // Update bill modal contents
+            const billItemsElement = document.getElementById('bill-items');
+            billItemsElement.innerHTML = cart.map(item =>
+                `<div class="bill-item">
+                    <span>${item.name} x ${item.quantity}</span>
+                    <span>₹${(item.price * item.quantity).toFixed(2)}</span>
+                </div>`
+            ).join('');
+
+            const billSubtotalElement = document.getElementById('bill-subtotal');
+            const billDiscountElement = document.getElementById('bill-discount');
+            const billTotalElement = document.getElementById('bill-total');
+            const billDateElement = document.getElementById('bill-date');
+
+            // Set bill date
+            billDateElement.textContent = new Date().toLocaleString();
+
+            // Set subtotal
+            billSubtotalElement.textContent = `Subtotal: ₹${total.toFixed(2)}`;
+
+            // Apply discount if applicable
+            if (discount) {
+                const finalTotal = total - discount.amount;
+                billDiscountElement.textContent = `Discount (${discount.percentage}% - ${discount.code}): -₹${discount.amount.toFixed(2)}`;
+                billTotalElement.innerHTML = `<strong>Total after Discount: ₹${finalTotal.toFixed(2)}</strong>`;
+            } else {
+                billDiscountElement.textContent = 'No discount applied';
+                billTotalElement.innerHTML = `<strong>Total: ₹${total.toFixed(2)}</strong>`;
+            }
+
+            // Show bill print modal
+            billPrintModal.style.display = 'flex';
+        }
+
+        // Payment Method Selection
+        document.querySelectorAll('.payment-method').forEach(method => {
+            method.addEventListener('click', function () {
+                document.querySelectorAll('.payment-method').forEach(m =>
+                    m.classList.remove('selected')
+                );
+                this.classList.add('selected');
+            });
+        });
+
+        // Confirm Payment
+        confirmPaymentBtn.addEventListener('click', () => {
+            const selectedPaymentMethod = document.querySelector('.payment-method.selected');
+
+            if (!selectedPaymentMethod) {
+                alert('Please select a payment method');
+                return;
+            }
+
+            // Print bill after successful payment
+            printBill();
+
+            // Simulate payment processing
+            alert(`Order placed successfully! Payment method: ${selectedPaymentMethod.dataset.method}`);
+
+            // Reset cart and close modals
+            cart = [];
+            updateCart();
+            paymentModal.style.display = 'none';
+        });
+
+        // Print Bill Button
+        printBillBtn.addEventListener('click', () => {
+            window.print();
+        });
+
+        // Close modals when clicking outside
+        paymentModal.addEventListener('click', (event) => {
+            if (event.target === paymentModal) {
+                paymentModal.style.display = 'none';
+            }
+        });
+
+        billPrintModal.addEventListener('click', (event) => {
+            if (event.target === billPrintModal) {
+                billPrintModal.style.display = 'none';
+            }
+        });
+
+        // Initialize menu
+        populateMenus();
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+    <script>
+        // Existing script content...
+
+        // Add these functions to the existing script
+        function generateUPIQRCode(amount) {
+            // Create a QR code with a mock UPI payment link
+            const qr = qrcode(0, 'M');
+            const upiLink = `upi://pay?pa=flavorfusion@upi&pn=Flavor%20Fusion&am=${amount}&cu=INR`;
+            qr.addData(upiLink);
+            qr.make();
+
+            const qrCodeImg = document.getElementById('qr-code-img');
+            qrCodeImg.src = qr.createDataURL(10);
+        }
+
+        // Modify the payment method selection to handle UPI QR
+        document.querySelectorAll('.payment-method').forEach(method => {
+            method.addEventListener('click', function () {
+                document.querySelectorAll('.payment-method').forEach(m =>
+                    m.classList.remove('selected')
+                );
+                this.classList.add('selected');
+
+                // Special handling for UPI
+                if (this.dataset.method === 'upi') {
+                    const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                    const discount = calculateDiscount(total);
+                    const finalTotal = discount ? total - discount.amount : total;
+
+                    const qrPaymentModal = document.getElementById('qr-payment-modal');
+                    const paymentAmountDisplay = document.getElementById('payment-amount-display');
+
+                    // Generate QR code with total amount
+                    generateUPIQRCode(finalTotal.toFixed(2));
+
+                    // Display payment amount
+                    paymentAmountDisplay.textContent = `Amount to Pay: ₹${finalTotal.toFixed(2)}`;
+
+                    // Show QR payment modal
+                    qrPaymentModal.style.display = 'flex';
+                }
+            });
+        });
+
+        // Simulate QR Code Scanning
+        const simulateScanBtn = document.getElementById('simulate-scan-btn');
+        simulateScanBtn.addEventListener('click', () => {
+            const qrPaymentStatus = document.getElementById('qr-payment-status');
+            const qrPaymentModal = document.getElementById('qr-payment-modal');
+            const paymentModal = document.getElementById('payment-modal');
+
+            // Simulate payment verification
+            qrPaymentStatus.textContent = 'Payment Successful!';
+            qrPaymentStatus.style.color = 'green';
+
+            // Close QR modal and proceed to bill
+            setTimeout(() => {
+                qrPaymentModal.style.display = 'none';
+                paymentModal.style.display = 'none';
+
+                // Print bill
+                printBill();
+            }, 1500);
+        });
+
+        // Close QR modal when clicking outside
+        const qrPaymentModal = document.getElementById('qr-payment-modal');
+        qrPaymentModal.addEventListener('click', (event) => {
+            if (event.target === qrPaymentModal) {
+                qrPaymentModal.style.display = 'none';
+            }
+        });
+    </script>
 </body>
 
 </html>

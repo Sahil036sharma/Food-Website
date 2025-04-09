@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login/Sign Up Form</title>
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&family=Lobster&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/axios@0.27.2/dist/axios.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         /* Global Styles */
@@ -520,96 +521,110 @@
     </div>
 
     <script>
-    
-        const loginBtn = document.getElementById('login-btn');
-        const signupBtn = document.getElementById('signup-btn');
-        const loginForm = document.getElementById('login-form');
-        const signupForm = document.getElementById('signup-form');
+       const loginBtn = document.getElementById('login-btn');
+const signupBtn = document.getElementById('signup-btn');
+const loginForm = document.getElementById('login-form');
+const signupForm = document.getElementById('signup-form');
 
-        loginBtn.addEventListener('click', () => {
-            loginBtn.classList.add('active');
-            signupBtn.classList.remove('active');
-            loginForm.classList.add('active');
-            signupForm.classList.remove('active');
-        });
+loginBtn.addEventListener('click', () => {
+    loginBtn.classList.add('active');
+    signupBtn.classList.remove('active');
+    loginForm.classList.add('active');
+    signupForm.classList.remove('active');
+});
 
-        signupBtn.addEventListener('click', () => {
-            signupBtn.classList.add('active');
-            loginBtn.classList.remove('active');
-            signupForm.classList.add('active');
-            loginForm.classList.remove('active');
-        });
+signupBtn.addEventListener('click', () => {
+    signupBtn.classList.add('active');
+    loginBtn.classList.remove('active');
+    signupForm.classList.add('active');
+    loginForm.classList.remove('active');
+});
 
-        // Forgot password modal
-        const modal = document.getElementById('forgot-modal');
-        const forgotTrigger = document.getElementById('forgot-trigger');
-        const closeBtn = document.querySelector('.close');
+// Forgot password modal
+const modal = document.getElementById('forgot-modal');
+const forgotTrigger = document.getElementById('forgot-trigger');
+const closeBtn = document.querySelector('.close');
 
-        forgotTrigger.addEventListener('click', () => {
-            modal.style.display = 'flex';
-        });
+forgotTrigger.addEventListener('click', () => {
+    modal.style.display = 'flex';
+});
 
-        closeBtn.addEventListener('click', () => {
-            modal.style.display = 'none';
-        });
+closeBtn.addEventListener('click', () => {
+    modal.style.display = 'none';
+});
 
-        window.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                modal.style.display = 'none';
-            }
-        });
+window.addEventListener('click', (e) => {
+    if (e.target === modal) {
+        modal.style.display = 'none';
+    }
+});
 
-        // Form submission handling
-        document.querySelector('#login-form form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const email = document.getElementById('login-email').value;
-            const password = document.getElementById('login-password').value;
-            
-            // Here you would typically send the data to your server
-            console.log('Login attempt:', { email, password });
-            alert('Login functionality would connect to server here.');
-            
-            // Clear form
-            this.reset();
-        });
+// Form submission handling
+document.querySelector('#login-form form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const email = document.getElementById('login-email').value;
+    const password = document.getElementById('login-password').value;
 
-        document.querySelector('#signup-form form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const name = document.getElementById('signup-name').value;
-            const email = document.getElementById('signup-email').value;
-            const password = document.getElementById('signup-password').value;
-            const confirmPassword = document.getElementById('signup-confirm').value;
-            
-            // Password validation
-            if (password !== confirmPassword) {
-                alert('Passwords do not match!');
-                return;
-            }
-            
-            // Here you would typically send the data to your server
-            console.log('Signup attempt:', { name, email, password });
-            alert('Sign up functionality would connect to server here.');
-            
-            // Clear form
-            this.reset();
-        });
+    axios.get('/api/login', {
+        email,
+        password
+    })
+    .then(response => {
+        if (response.data.token) {
+            localStorage.setItem('token', response.data.token);
+            window.location.href = 'main.html';
+        } else {
+            alert('Invalid credentials');
+        }
+    })
+    .catch(error => console.error('Error:', error));
+});
 
-        document.querySelector('#forgot-modal form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const email = document.getElementById('reset-email').value;
-            
-            // Here you would typically send the reset request to your server
-            console.log('Password reset request for:', email);
-            alert('Password reset link would be sent here.');
-            
-            // Close modal and clear form
-            modal.style.display = 'none';
-            this.reset();
-        });
+document.querySelector('#signup-form form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const name = document.getElementById('signup-name').value;
+    const email = document.getElementById('signup-email').value;
+    const password = document.getElementById('signup-password').value;
+    const confirmPassword = document.getElementById('signup-confirm').value;
+
+    // Password validation
+    if (password !== confirmPassword) {
+        alert('Passwords do not match!');
+        return;
+    }
+
+    axios.post('/signup', {
+        name,
+        email,
+        password
+    })
+    .then(response => {
+        if (response.data.token) {
+            localStorage.setItem('token', response.data.token);
+            window.location.href = 'main.html';
+        } else {
+            alert('User  already exists');
+        }
+    })
+    .catch(error => console.error('Error:', error));
+});
+
+document.querySelector('#forgot-modal form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const email = document.getElementById('reset-email').value;
+
+    axios.post('/forgot-password', {
+        email
+    })
+    .then(response => {
+        if (response.data.message) {
+            alert(response.data.message);
+        } else {
+            alert('Error sending reset link');
+        }
+    })
+    .catch(error => console.error('Error:', error));
+});
     </script>
-
-
-
-</script>
 </body>
 </html>
